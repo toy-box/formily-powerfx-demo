@@ -48,7 +48,7 @@ function reactionPatch(reaction: any, engine: MetaRecalcEngine) {
   if (reaction.type === 'expression') {
     return (field: Field) => {
       if (field.form.initialized) {
-        const result = engine.eval(reaction.expression).toObject();
+        const result = engine.eval(reaction.expression, field.address.toString()).toObject();
         switch (reaction.state) {
           case 'value':
             field.setValue(result);

@@ -7,6 +7,9 @@ export const user = {
   email: 'aston_martin@aston.com',
   gender: 1,
   birthday: '1836-01-03',
+  parent: {
+    aget: 20,
+  },
 };
 
 export const userSchema = {
@@ -22,7 +25,7 @@ export const userSchema = {
         {
           type: 'expression',
           state: 'value',
-          expression: 'firstName & lastName',
+          expression: 'firstName & " " & lastName',
         },
       ],
     },
@@ -91,6 +94,30 @@ export const userSchema = {
       'x-decorator': 'FormItem',
       'x-component': 'DatePicker',
     },
+    parent: {
+      type: 'object',
+      properties: {
+        age: {
+          type: 'number',
+          title: '年龄',
+          'x-decorator': 'FormItem',
+          'x-component': 'NumberPicker',
+        },
+        amount: {
+          type: 'number',
+          title: '年金',
+          'x-decorator': 'FormItem',
+          'x-component': 'NumberPicker',
+          'x-reactions': [
+            {
+              type: 'expression',
+              state: 'value',
+              expression: '1000 * ThisItem.age',
+            },
+          ],
+        },
+      },
+    },
   },
 };
 
@@ -129,6 +156,23 @@ export const objectMeta: IObjectMeta = {
       key: 'birthday',
       type: 'date',
       name: '生日',
+    },
+    parent: {
+      key: 'parent',
+      name: 'parent',
+      type: 'object',
+      properties: {
+        age: {
+          key: 'age',
+          type: 'number',
+          name: '年龄',
+        },
+        amount: {
+          key: 'amount',
+          type: 'number',
+          name: '年金',
+        },
+      },
     },
   },
 };
