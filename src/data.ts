@@ -66,6 +66,13 @@ export const userSchema = {
       'x-decorator': 'FormItem',
       'x-component': 'Input',
       'x-validator': 'email',
+      'x-reactions': [
+        {
+          type: 'expression',
+          state: 'visibility',
+          expression: 'parent.amount <= 0',
+        },
+      ],
     },
     gender: {
       type: 'string',
