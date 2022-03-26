@@ -14,7 +14,8 @@ import {
   ArrayItems,
   Editable,
   FormButtonGroup,
-  NumberPicker
+  NumberPicker,
+  ArrayTable,
 } from '@formily/antd'
 import { Card } from 'antd'
 import { MetaRecalcEngine } from '@toy-box/power-fx'
@@ -27,6 +28,7 @@ const form = createForm({
 
 const SchemaField = createSchemaField({
   components: {
+    ArrayTable,
     FormItem,
     FormGrid,
     FormLayout,

@@ -48,7 +48,14 @@ function reactionPatch(reaction: any, engine: MetaRecalcEngine) {
   if (reaction.type === 'expression') {
     return (field: Field) => {
       if (field.form.initialized) {
+        // const row = field.form.getValuesIn(field.path.parent());
+        // const a1 = field.form.getValuesIn(`${field.path.parent()}.a1`);
+        // const a2 = field.form.getValuesIn(`${field.path.parent()}.a2`);
+        // console.log('fields', field.form.fields);
+        // console.log('field', field.path);
+        // field.setValue(`${a1}_${a2}`);
         const result = engine.eval(reaction.expression, field.address.toString()).toObject();
+        console.log('result', result);
         switch (reaction.state) {
           case 'value':
             field.setValue(result);

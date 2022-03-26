@@ -1814,37 +1814,32 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
-"@toy-box/meta-schema@^2.0.35":
-  version "2.0.35"
-  resolved "https://registry.yarnpkg.com/@toy-box/meta-schema/-/meta-schema-2.0.35.tgz#09124f5cee0f43cc0e5f7c754602fd9e600c589e"
-  integrity sha512-yESAqAh+Z942X5qDLD3QuQdaLxbb/qeQhTmQ7sQpEJqkq8wQTEXOJjorMaALPeoOnbHXxRH42a3hXGI6LCe2FA==
-
 "@toy-box/meta-schema@^2.0.37":
   version "2.0.37"
   resolved "https://registry.yarnpkg.com/@toy-box/meta-schema/-/meta-schema-2.0.37.tgz#f00a99a3d3326361a2877664e8d470f1163896c4"
   integrity sha512-tgxE3iyNz75lI+nisPmRnPYMW5RCvu3Spxh6p2kiQAcSnIDNd5LeEiE9+6V65ywOu0N67ExWlegQW0qTucREPw==
 
-"@toy-box/power-fx@^0.1.52-alpha":
-  version "0.1.52-alpha"
-  resolved "https://registry.yarnpkg.com/@toy-box/power-fx/-/power-fx-0.1.52-alpha.tgz#597627e6fe6e8d99b6996da63c21fc892c0b4383"
-  integrity sha512-kc4x4RT171mmPPhi1KAIZvNTGOgwBmaVudeM7GOBgr9UheFK3j2KrmzKDi+RxZ6n3FboVx5i/BP98Q6MO4OARA==
+"@toy-box/power-fx@^0.1.66-alpha":
+  version "0.1.66-alpha"
+  resolved "https://registry.yarnpkg.com/@toy-box/power-fx/-/power-fx-0.1.66-alpha.tgz#ec1e89c0d95c44b2c2318c344af1f3954701c78b"
+  integrity sha512-XvLo6qU611ugtKzMdMfFkyGbzdEzooFgAmB1jvWeH3qaomHJLVFtFYTRHKU6XwGIcP3sHwGaArxaic09wOGqYg==
   dependencies:
     "@formily/core" "^2.0.15"
     "@formily/json-schema" "^2.0.15"
     "@formily/path" "^2.0.15"
     "@formulajs/formulajs" "^2.6.9"
     "@toy-box/meta-schema" "^2.0.37"
-    "@toy-box/toybox-shared" "^2.0.15"
+    "@toy-box/toybox-shared" "^2.0.38"
     dayjs "^1.10.7"
     fast-printf "^1.6.9"
     object-hash "^2.2.0"
     rollup "^2.67.1"
     web-encoding "^1.1.5"
 
-"@toy-box/toybox-shared@^2.0.15":
-  version "2.0.15"
-  resolved "https://registry.yarnpkg.com/@toy-box/toybox-shared/-/toybox-shared-2.0.15.tgz#9981cce3d7c8a07506a9d8fc5a5b966008358f3b"
-  integrity sha512-lO63VfWqNCNlaHyElCY3qNUuyMY5h3wJ2xVsc0jaxly2vDNdYGabSPy5D6XhqzxFdB9tr02kInoHdp6fGrVQ7A==
+"@toy-box/toybox-shared@^2.0.38":
+  version "2.0.38"
+  resolved "https://registry.yarnpkg.com/@toy-box/toybox-shared/-/toybox-shared-2.0.38.tgz#5a4d6d125147ff96ef11aa08f2bcc5afdbaaf011"
+  integrity sha512-dxzTtDbMOGBgnqAIvF5mYwPteb4ltapWTtrwdq8TIblXdp56L/25uDPqvLkVcrk/B3N9K85madwJ6AKsyVAo9g==
 
 "@trysound/sax@0.2.0":
   version "0.2.0"
