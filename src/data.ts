@@ -101,6 +101,19 @@ export const userSchema = {
       'x-decorator': 'FormItem',
       'x-component': 'DatePicker',
     },
+    fullMonth: {
+      type: 'string',
+      title: '满月',
+      'x-decorator': 'FormItem',
+      'x-component': 'DatePicker',
+      'x-reactions': [
+        {
+          type: 'expression',
+          state: 'value',
+          expression: 'DateAdd(birthday, 30)',
+        },
+      ],
+    },
     parent: {
       type: 'object',
       properties: {
@@ -279,6 +292,11 @@ export const objectMeta: IObjectMeta = {
       key: 'birthday',
       type: 'date',
       name: '生日',
+    },
+    fullMonth: {
+      key: 'fullMonth',
+      type: 'date',
+      name: '满月',
     },
     parent: {
       key: 'parent',
