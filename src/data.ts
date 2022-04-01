@@ -12,6 +12,127 @@ export const user = {
   },
 };
 
+export const objectMeta: IObjectMeta = {
+  key: 'userData',
+  name: 'user',
+  type: 'object',
+  primaryKey: 'username',
+  properties: {
+    username: {
+      key: 'username',
+      type: 'string',
+      name: '用户名',
+    },
+    firstName: {
+      key: 'firstName',
+      type: 'string',
+      name: '姓',
+    },
+    lastName: {
+      key: 'lastName',
+      type: 'string',
+      name: '名',
+    },
+    email: {
+      key: 'email',
+      type: 'string',
+      name: '邮箱',
+    },
+    gender: {
+      key: 'gender',
+      type: 'boolean',
+      name: '性别',
+    },
+    birthday: {
+      key: 'birthday',
+      type: 'date',
+      name: '生日',
+    },
+    fullMonth: {
+      key: 'fullMonth',
+      type: 'date',
+      name: '满月',
+    },
+    parent: {
+      key: 'parent',
+      name: 'parent',
+      type: 'object',
+      properties: {
+        age: {
+          key: 'age',
+          type: 'number',
+          name: '年龄',
+        },
+        amount: {
+          key: 'amount',
+          type: 'number',
+          name: '年金',
+        },
+      },
+    },
+    projects: {
+      key: 'projects',
+      name: 'projects',
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          a1: {
+            key: 'a1',
+            type: 'number',
+            name: 'a1',
+          },
+          a2: {
+            key: 'a2',
+            type: 'number',
+            name: 'a2',
+          },
+          a3: {
+            key: 'a3',
+            type: 'number',
+            name: 'a3',
+          },
+        },
+      },
+    },
+    dataGrid: {
+      key: 'dataGrid',
+      name: 'dataGrid',
+      type: 'object',
+      properties: {
+        dataSource: {
+          key: 'dataSource',
+          type: 'array',
+          name: 'dataSource',
+          items: {
+            type: 'object',
+            properties: {
+              str: {
+                key: 'str',
+                type: 'string',
+                name: 'String',
+              },
+              num: {
+                key: 'num',
+                type: 'number',
+                name: 'Number',
+              },
+            },
+          },
+        },
+        selectedKeys: {
+          key: 'selectedKeys',
+          name: 'selectedKeys',
+          type: 'array',
+          items: {
+            type: 'string',
+          },
+        },
+      },
+    },
+  },
+};
+
 export const userSchema = {
   type: 'object',
   properties: {
@@ -254,91 +375,83 @@ export const userSchema = {
         },
       },
     },
-  },
-};
-
-export const objectMeta: IObjectMeta = {
-  key: 'userData',
-  name: 'user',
-  type: 'object',
-  primaryKey: 'username',
-  properties: {
-    username: {
-      key: 'username',
-      type: 'string',
-      name: '用户名',
-    },
-    firstName: {
-      key: 'firstName',
-      type: 'string',
-      name: '姓',
-    },
-    lastName: {
-      key: 'lastName',
-      type: 'string',
-      name: '名',
-    },
-    email: {
-      key: 'email',
-      type: 'string',
-      name: '邮箱',
-    },
-    gender: {
-      key: 'gender',
-      type: 'boolean',
-      name: '性别',
-    },
-    birthday: {
-      key: 'birthday',
-      type: 'date',
-      name: '生日',
-    },
-    fullMonth: {
-      key: 'fullMonth',
-      type: 'date',
-      name: '满月',
-    },
-    parent: {
-      key: 'parent',
-      name: 'parent',
+    dataGrid: {
       type: 'object',
+      'x-decorator': 'FormItem',
+      'x-component': 'DataGrid',
+      'x-validator': [],
+      'x-component-props': {
+        defaultSelectionType: 'checkbox',
+        objectMeta: objectMeta.properties.dataGrid,
+      },
+      'x-decorator-props': {},
+      'x-designable-id': 'vkv8txtp67z',
       properties: {
-        age: {
-          key: 'age',
-          type: 'number',
-          name: '年龄',
+        selectedKeys: {
+          type: 'array',
         },
-        amount: {
-          key: 'amount',
-          type: 'number',
-          name: '年金',
+        dataSource: {
+          type: 'array',
+          'x-component': 'MetaTable',
+          'x-component-props': {
+            defaultSelectionType: 'checkbox',
+            objectMeta: objectMeta.properties.dataGrid,
+          },
+          properties: {
+            addition: {
+              type: 'void',
+              title: 'Addition',
+              'x-component': 'MetaTable.Addition',
+              'x-component-props': {},
+              'x-designable-id': 'jrbow23c0u6',
+              'x-index': 0,
+            },
+          },
+          items: {
+            type: 'object',
+            'x-designable-id': 'kreabo4057x',
+            properties: {
+              strCol: {
+                type: 'void',
+                'x-component': 'MetaTable.Column',
+                'x-component-props': {
+                  title: '字符串',
+                },
+                'x-designable-id': 'ehilskhsvht',
+                properties: {
+                  str: {
+                    type: 'string',
+                    'x-decorator': 'FormItem',
+                    'x-component': 'Input',
+                    'x-designable-id': 'hymy07npisn',
+                    'x-index': 0,
+                  },
+                },
+                'x-index': 0,
+              },
+              numCol: {
+                type: 'void',
+                'x-component': 'MetaTable.Column',
+                'x-component-props': {
+                  title: '数字',
+                },
+                'x-designable-id': '1lt8a6fsohi',
+                properties: {
+                  num: {
+                    type: 'number',
+                    'x-decorator': 'FormItem',
+                    'x-component': 'NumberPicker',
+                    'x-designable-id': '85h7zak34u1',
+                    'x-index': 0,
+                  },
+                },
+                'x-index': 1,
+              },
+            },
+          },
         },
       },
-    },
-    projects: {
-      key: 'projects',
-      name: 'projects',
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          a1: {
-            key: 'a1',
-            type: 'number',
-            name: 'a1',
-          },
-          a2: {
-            key: 'a2',
-            type: 'number',
-            name: 'a2',
-          },
-          a3: {
-            key: 'a3',
-            type: 'number',
-            name: 'a3',
-          },
-        },
-      },
+      'x-index': 0,
     },
   },
 };

@@ -17,8 +17,10 @@ import {
   NumberPicker,
   ArrayTable,
 } from '@formily/antd'
+import { MetaTable, DataGrid } from './components'
 import { Card } from 'antd'
 import { MetaRecalcEngine } from '@toy-box/power-fx'
+import { BrowserRouter } from "react-router-dom";
 import { objectMeta, userSchema } from './data'
 import { patchProvide } from './patcher'
 
@@ -39,6 +41,8 @@ const SchemaField = createSchemaField({
     ArrayItems,
     Editable,
     NumberPicker,
+    MetaTable,
+    DataGrid,
   },
 })
 
@@ -46,32 +50,33 @@ const engine = new MetaRecalcEngine(form, objectMeta)
 Schema.registerPatches(patchProvide(engine))
 
 const App =  () => {
-  const [result, setResult] = useState<any>()
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        background: '#eee',
-        padding: '40px 0',
-      }}
-    >
-      <Card title="编辑用户" style={{ width: 620 }}>
-        <Form
-          form={form}
-          labelCol={5}
-          wrapperCol={16}
-          onAutoSubmit={console.log}
-        >
-          <SchemaField schema={userSchema} />
-          <FormButtonGroup.FormItem>
-            <Submit block size="large">
-              提交
-            </Submit>
-          </FormButtonGroup.FormItem>
-        </Form>
-      </Card>
-    </div>
+    <BrowserRouter>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          background: '#eee',
+          padding: '40px 0',
+        }}
+      >
+        <Card title="编辑用户" style={{ width: 620 }}>
+          <Form
+            form={form}
+            labelCol={5}
+            wrapperCol={16}
+            onAutoSubmit={console.log}
+          >
+            <SchemaField schema={userSchema} />
+            <FormButtonGroup.FormItem>
+              <Submit block size="large">
+                提交
+              </Submit>
+            </FormButtonGroup.FormItem>
+          </Form>
+        </Card>
+      </div>
+    </BrowserRouter>
   )
 }
 
