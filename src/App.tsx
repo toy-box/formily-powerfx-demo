@@ -17,10 +17,10 @@ import {
   NumberPicker,
   ArrayTable,
 } from '@formily/antd'
-import { MetaTable, DataGrid } from './components'
 import { Card } from 'antd'
+import { DataGrid, MetaTable } from './components'
 import { MetaRecalcEngine } from '@toy-box/power-fx'
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom'
 import { objectMeta, userSchema } from './data'
 import { patchProvide } from './patcher'
 

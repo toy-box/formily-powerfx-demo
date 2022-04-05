@@ -10,7 +10,7 @@ import React, {
 import classNames from 'classnames'
 import { PaginationProps } from 'antd'
 import { observer } from '@formily/react'
-import { CompareOP, MetaValueType } from '@toy-box/meta-schema'
+import { CompareOP } from '@toy-box/meta-schema'
 import update from 'immutability-helper'
 import { PaginationBar, IButtonClusterProps } from '@toy-box/toybox-ui'
 import { omit } from '@toy-box/toybox-shared'
@@ -19,14 +19,12 @@ import { useTable, useQuery } from '@toy-box/meta-components/lib/components/data
 import { LoadDataType, DataGridModeType } from './types'
 import { DataGridContext } from './context'
 import {
-  ViewSetter,
   TableStatusBar,
   FilterPanel,
   OperatePanel,
   FilterDisplay,
-  ColumnsSetValueType,
-} from '@toy-box/meta-components/lib/components/data-grid/components'
-import { RecursionField, useField, useFieldSchema } from '@formily/react'
+} from './components'
+import { useField, useFieldSchema } from '@formily/react'
 
 // export * from './hooks'
 
@@ -112,17 +110,6 @@ export declare type DataGridRefType = {
   reload: () => void
   reset: () => void
   dataSource?: RowData[]
-}
-
-interface CompoundedComponent
-  extends React.ForwardRefExoticComponent<
-    IDataGridProps & React.RefAttributes<DataGridRefType>
-  > {
-  ViewSetter: typeof ViewSetter
-  TableStatusBar: typeof TableStatusBar
-  FilterPanel: typeof FilterPanel
-  OperatePanel: typeof OperatePanel
-  FilterDisplay: typeof FilterDisplay
 }
 
 export const DataGrid: React.FC<IDataGridProps> = observer((
@@ -314,7 +301,7 @@ export const DataGrid: React.FC<IDataGridProps> = observer((
           .filter((key) => {
             return filterFieldKeys
               ? filterFieldKeys.includes(key)
-              : key != objectMeta.primaryKey
+              : key !== objectMeta.primaryKey
           })
           .map((key) => properties[key])
       }
@@ -369,7 +356,8 @@ export const DataGrid: React.FC<IDataGridProps> = observer((
     return (
       <DataGridContext.Provider value={dataGridContext}>
         <div className={classNames('tbox-index-view', className)} style={style}>
-          <SelectStatus />
+          <FilterPanel />
+          <TableStatusBar />
           {children}
         </div>
       </DataGridContext.Provider>

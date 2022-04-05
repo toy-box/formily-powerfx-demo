@@ -283,14 +283,14 @@ const RowComp = (props: any) => {
   return <SortableRow index={props['data-row-key'] || 0} {...props} />
 }
 
-export interface MetaTableProps<T> extends TableProps<T> {
+export interface IMetaTableProps<T> extends TableProps<T> {
   objectMeta: IObjectMeta
   defaultSelectionType?: RowSelectionType
   keepSelected?: boolean
 }
 
 export const MetaTable: ComposedArrayTable = observer(
-  (props: MetaTableProps<any>) => {
+  (props: IMetaTableProps<any>) => {
     const { objectMeta, ...tableProps } = props
     const dataGrid = useDataGrid()
     const ref = useRef<HTMLDivElement>()
