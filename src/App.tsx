@@ -2,23 +2,20 @@ import React, { useState } from 'react'
 import { createForm } from '@formily/core'
 import { createSchemaField, Schema } from '@formily/react'
 import {
-  Form,
   FormItem,
   FormLayout,
   Input,
   Select,
   Cascader,
   DatePicker,
-  Submit,
   FormGrid,
   ArrayItems,
   Editable,
-  FormButtonGroup,
   NumberPicker,
   ArrayTable,
 } from '@formily/antd'
 import { Card } from 'antd'
-import { DataGrid, MetaTable } from './components'
+import { DataGrid, MetaTable, Page, FieldString, FieldNumber, FieldBoolean, FieldDate } from './components'
 import { MetaRecalcEngine } from '@toy-box/power-fx'
 import { BrowserRouter } from 'react-router-dom'
 import { objectMeta, userSchema } from './data'
@@ -43,6 +40,7 @@ const SchemaField = createSchemaField({
     NumberPicker,
     MetaTable,
     DataGrid,
+    FieldString, FieldNumber, FieldBoolean, FieldDate
   },
 })
 
@@ -61,19 +59,17 @@ const App =  () => {
         }}
       >
         <Card title="编辑用户" style={{ width: 620 }}>
-          <Form
+          <Page
+            title="编辑用户"
+            name="EditUser"
             form={form}
             labelCol={5}
             wrapperCol={16}
             onAutoSubmit={console.log}
+            pageMeta={objectMeta}
           >
             <SchemaField schema={userSchema} />
-            <FormButtonGroup.FormItem>
-              <Submit block size="large">
-                提交
-              </Submit>
-            </FormButtonGroup.FormItem>
-          </Form>
+          </Page>
         </Card>
       </div>
     </BrowserRouter>

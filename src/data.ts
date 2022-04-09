@@ -70,31 +70,6 @@ export const objectMeta: IObjectMeta = {
         },
       },
     },
-    projects: {
-      key: 'projects',
-      name: 'projects',
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          a1: {
-            key: 'a1',
-            type: 'number',
-            name: 'a1',
-          },
-          a2: {
-            key: 'a2',
-            type: 'number',
-            name: 'a2',
-          },
-          a3: {
-            key: 'a3',
-            type: 'number',
-            name: 'a3',
-          },
-        },
-      },
-    },
     dataGrid: {
       key: 'dataGrid',
       name: 'dataGrid',
@@ -259,122 +234,6 @@ export const userSchema = {
         },
       },
     },
-    projects: {
-      type: 'array',
-      'x-decorator': 'FormItem',
-      'x-component': 'ArrayTable',
-      'x-component-props': {
-        pagination: { pageSize: 10 },
-        scroll: { x: '100%' },
-      },
-      items: {
-        type: 'object',
-        properties: {
-          column1: {
-            type: 'void',
-            'x-component': 'ArrayTable.Column',
-            'x-component-props': { width: 50, title: 'Sort', align: 'center' },
-            properties: {
-              sort: {
-                type: 'void',
-                'x-component': 'ArrayTable.SortHandle',
-              },
-            },
-          },
-          column2: {
-            type: 'void',
-            'x-component': 'ArrayTable.Column',
-            'x-component-props': { width: 80, title: 'Index', align: 'center' },
-            properties: {
-              index: {
-                type: 'void',
-                'x-component': 'ArrayTable.Index',
-              },
-            },
-          },
-          column3: {
-            type: 'void',
-            'x-component': 'ArrayTable.Column',
-            'x-component-props': { width: 200, title: '单价' },
-            properties: {
-              a1: {
-                type: 'number',
-                'x-decorator': 'Editable',
-                'x-component': 'NumberPicker',
-              },
-            },
-          },
-          column4: {
-            type: 'void',
-            'x-component': 'ArrayTable.Column',
-            'x-component-props': { width: 200, title: '数量' },
-            properties: {
-              a2: {
-                type: 'number',
-                'x-decorator': 'FormItem',
-                'x-component': 'NumberPicker',
-              },
-            },
-          },
-          column5: {
-            type: 'void',
-            'x-component': 'ArrayTable.Column',
-            'x-component-props': { width: 200, title: '金额' },
-            properties: {
-              a3: {
-                type: 'number',
-                'x-decorator': 'FormItem',
-                'x-component': 'NumberPicker',
-                'x-reactions': [
-                  {
-                    type: 'expression',
-                    state: 'value',
-                    expression: 'ThisItem.a2 * ThisItem.a1',
-                  },
-                ],
-              },
-            },
-          },
-          column6: {
-            type: 'void',
-            'x-component': 'ArrayTable.Column',
-            'x-component-props': {
-              title: 'Operations',
-              dataIndex: 'operations',
-              width: 200,
-              fixed: 'right',
-            },
-            properties: {
-              item: {
-                type: 'void',
-                'x-component': 'FormItem',
-                properties: {
-                  remove: {
-                    type: 'void',
-                    'x-component': 'ArrayTable.Remove',
-                  },
-                  moveDown: {
-                    type: 'void',
-                    'x-component': 'ArrayTable.MoveDown',
-                  },
-                  moveUp: {
-                    type: 'void',
-                    'x-component': 'ArrayTable.MoveUp',
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-      properties: {
-        add: {
-          type: 'void',
-          'x-component': 'ArrayTable.Addition',
-          title: '添加条目',
-        },
-      },
-    },
     dataGrid: {
       type: 'object',
       'x-decorator': 'FormItem',
@@ -397,16 +256,16 @@ export const userSchema = {
             defaultSelectionType: 'checkbox',
             objectMeta: objectMeta.properties.dataGrid,
           },
-          properties: {
-            addition: {
-              type: 'void',
-              title: 'Addition',
-              'x-component': 'MetaTable.Addition',
-              'x-component-props': {},
-              'x-designable-id': 'jrbow23c0u6',
-              'x-index': 0,
-            },
-          },
+          // properties: {
+          //   addition: {
+          //     type: 'void',
+          //     title: 'Addition',
+          //     'x-component': 'MetaTable.Addition',
+          //     'x-component-props': {},
+          //     'x-designable-id': 'jrbow23c0u6',
+          //     'x-index': 0,
+          //   },
+          // },
           items: {
             type: 'object',
             'x-designable-id': 'kreabo4057x',
@@ -421,8 +280,9 @@ export const userSchema = {
                 properties: {
                   str: {
                     type: 'string',
+                    'x-pattern': 'readPretty',
                     'x-decorator': 'FormItem',
-                    'x-component': 'Input',
+                    'x-component': 'FieldString',
                     'x-designable-id': 'hymy07npisn',
                     'x-index': 0,
                   },
@@ -439,8 +299,9 @@ export const userSchema = {
                 properties: {
                   num: {
                     type: 'number',
+                    'x-pattern': 'readPretty',
                     'x-decorator': 'FormItem',
-                    'x-component': 'NumberPicker',
+                    'x-component': 'FieldNumber',
                     'x-designable-id': '85h7zak34u1',
                     'x-index': 0,
                   },

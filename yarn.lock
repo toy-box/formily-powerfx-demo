@@ -1847,15 +1847,15 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
-"@toy-box/meta-components@^2.0.38":
-  version "2.0.38"
-  resolved "https://registry.yarnpkg.com/@toy-box/meta-components/-/meta-components-2.0.38.tgz#e96c84e9f91992fbae65bffb77123051400d65a5"
-  integrity sha512-PvgNRybCheHLftE5Dj4mnXfijJ+EXzvOUm1z7ixda6i+90BNGJ2I+RkfHJHJu0itN9UFIf9QtGByc9LS0tCfvQ==
+"@toy-box/meta-components@^2.0.39":
+  version "2.0.39"
+  resolved "https://registry.yarnpkg.com/@toy-box/meta-components/-/meta-components-2.0.39.tgz#5e4aea1664ada4ecc3e99cc727ec76e345298f63"
+  integrity sha512-XhGiukOzltqBe/b6sZMopnIMvH8PYRUWh0aE7Cko/K+8OY0xZCVc/akHSCF9ETAL/h0EXJL/r5kzwCO7wX1CyA==
   dependencies:
     "@ahooksjs/antd-table" "^0.2.3"
     "@ahooksjs/use-request" "^2.8.13"
     "@airclass/icons" "^4.3.4"
-    "@toy-box/meta-schema" "^2.0.37"
+    "@toy-box/meta-schema" "^2.0.39"
     "@toy-box/toybox-shared" "^2.0.38"
     "@toy-box/toybox-ui" "^2.0.38"
     ahooks "^2.10.6"
@@ -1872,6 +1872,11 @@
   version "2.0.37"
   resolved "https://registry.yarnpkg.com/@toy-box/meta-schema/-/meta-schema-2.0.37.tgz#f00a99a3d3326361a2877664e8d470f1163896c4"
   integrity sha512-tgxE3iyNz75lI+nisPmRnPYMW5RCvu3Spxh6p2kiQAcSnIDNd5LeEiE9+6V65ywOu0N67ExWlegQW0qTucREPw==
+
+"@toy-box/meta-schema@^2.0.39":
+  version "2.0.39"
+  resolved "https://registry.yarnpkg.com/@toy-box/meta-schema/-/meta-schema-2.0.39.tgz#978bccd7da2b4ee5bc219e19ba7e7b99944fe73d"
+  integrity sha512-/oIi1wZHco6F8DfWU+3qD0BzssaLVVXujMOjleB5B7fvsZRkyE/vCCNXodlXq3Em/VaC4V27x0D8FxvIvkcgFw==
 
 "@toy-box/power-fx@^0.1.66-alpha":
   version "0.1.66-alpha"

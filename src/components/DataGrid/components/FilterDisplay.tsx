@@ -18,7 +18,7 @@ export const FilterDisplay: FC<IFilterDisplayProps> = ({
       index > -1 &&
       dataGrid.setParams &&
       dataGrid.setParams(update(dataGrid.params, { $splice: [[index, 1]] })),
-    [dataGrid.params, dataGrid.setParams]
+    [dataGrid]
   )
 
   return (

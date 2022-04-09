@@ -9,10 +9,10 @@ import React, {
 } from 'react'
 import classNames from 'classnames'
 import { PaginationProps } from 'antd'
-import { observer } from '@formily/react'
-import { CompareOP } from '@toy-box/meta-schema'
+import { observer, useField, useFieldSchema } from '@formily/react'
+import { CompareOP, fetchMeta, IFieldMeta } from '@toy-box/meta-schema'
 import update from 'immutability-helper'
-import { PaginationBar, IButtonClusterProps } from '@toy-box/toybox-ui'
+import { IButtonClusterProps } from '@toy-box/toybox-ui'
 import { omit } from '@toy-box/toybox-shared'
 import { RowSelectionType } from 'antd/es/table/interface'
 import { useTable, useQuery } from '@toy-box/meta-components/lib/components/data-grid/hooks'
@@ -21,10 +21,8 @@ import { DataGridContext } from './context'
 import {
   TableStatusBar,
   FilterPanel,
-  OperatePanel,
-  FilterDisplay,
 } from './components'
-import { useField, useFieldSchema } from '@formily/react'
+import { usePage } from '../Page/hooks/usePage'
 
 // export * from './hooks'
 
@@ -132,6 +130,8 @@ export const DataGrid: React.FC<IDataGridProps> = observer((
     ref: React.MutableRefObject<DataGridRefType>
   ) => {
     const schema = useFieldSchema()
+    const field = useField()
+    const page = usePage()
     const [query, setQuery] = useQuery()
     const preParamsRef = useRef<Toybox.MetaSchema.Types.ICompareOperation[]>()
     const paramsRef = useRef<Toybox.MetaSchema.Types.ICompareOperation[]>()
@@ -230,17 +230,26 @@ export const DataGrid: React.FC<IDataGridProps> = observer((
       [preParamsRef, setPreParams]
     )
 
-    const onloadData = (pageable, params) => {
-      return loadData(
-        pageable,
-        logicFilter ? params : simpleParams(params)
-      ).then((data) => {
-        if (!keepSelected) {
-          setSelectedKeys([])
-        }
-        return data
-      })
-    }
+    const onloadData = useCallback((pageable, params) => {
+      const data = [
+        { str: 'str1', num: '10001' },
+        { str: 'str2', num: '10002' },
+        { str: 'str3', num: '10003' },
+      ]
+      field.form.setValuesIn(field.path.concat('dataSource'), data)
+      if (!keepSelected) {
+        setSelectedKeys([])
+      }
+      // return loadData(
+      //   pageable,
+      //   logicFilter ? params : simpleParams(params)
+      // ).then((data) => {
+      //   if (!keepSelected) {
+      //     setSelectedKeys([])
+      //   }
+      //   return data
+      // })
+    }, [field.form, field.path, keepSelected, setSelectedKeys])
 
     const {
       pagination: innerPagination,
@@ -272,7 +281,7 @@ export const DataGrid: React.FC<IDataGridProps> = observer((
         current: pageable?.current || innerPagination.current,
         pageSize: pageable?.pageSize || innerPagination.pageSize,
       }),
-      [pagination, innerPagination, pageable]
+      [pagination, innerPagination, pageable, setQuerySearch]
     )
 
     const reset = useCallback(() => {
@@ -282,7 +291,7 @@ export const DataGrid: React.FC<IDataGridProps> = observer((
         setParams([])
         setPageable({})
       }
-    }, [urlQuery])
+    }, [setQuery, urlQuery])
 
     useImperativeHandle(
       ref,
@@ -295,18 +304,19 @@ export const DataGrid: React.FC<IDataGridProps> = observer((
     )
 
     const filterFields = useMemo(() => {
-      const { properties } = objectMeta
+      const dataSourceMeta = fetchMeta(page.pageMeta, field.path.concat('dataSource').segments) as IFieldMeta
+      const { properties } = dataSourceMeta.items
       if (properties) {
         return Object.keys(properties)
           .filter((key) => {
             return filterFieldKeys
               ? filterFieldKeys.includes(key)
-              : key !== objectMeta.primaryKey
+              : key !== dataSourceMeta.primaryKey
           })
           .map((key) => properties[key])
       }
       return []
-    }, [objectMeta, filterFieldKeys])
+    }, [page, field, filterFieldKeys])
 
     const dataGridContext = useMemo(
       () => ({
@@ -331,28 +341,6 @@ export const DataGrid: React.FC<IDataGridProps> = observer((
       [currentMode, filterFieldKeys, filterFields, logicFilter, objectMeta, pageable, params, preParams, selectedKeys, selectionType, setQuerySearch, setSelectedKeys, viewModes]
     )
 
-  const SelectStatus = useCallback(
-    () => (
-      <>
-        <div>
-          {selectionType && (
-            <span>
-              已经选择 {(selectedKeys || []).length} 条记录
-            </span>
-          )}
-        </div>
-      </>
-    ),
-    [selectionType, selectedKeys]
-  )
-    // const IndexContent = useCallback(() => {
-    //   return <React.Fragment>
-    //       {/* <RecursionField schema={schema} name={'dataSource'}/> */}
-    //       <PaginationBar {...paginationProps} />
-    //   </React.Fragment>
-    
-    // }, [schema, paginationProps])
-
     return (
       <DataGridContext.Provider value={dataGridContext}>
         <div className={classNames('tbox-index-view', className)} style={style}>
@@ -365,9 +353,3 @@ export const DataGrid: React.FC<IDataGridProps> = observer((
   })
 
 DataGrid.displayName = 'DataGrid'
-
-// DataGrid.ViewSetter = ViewSetter
-// DataGrid.TableStatusBar = TableStatusBar
-// DataGrid.FilterPanel = FilterPanel
-// DataGrid.OperatePanel = OperatePanel
-// DataGrid.FilterDisplay = FilterDisplay
