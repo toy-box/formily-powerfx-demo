@@ -15,7 +15,7 @@ import {
   ArrayTable,
 } from '@formily/antd'
 import { Card } from 'antd'
-import { DataGrid, MetaTable, Page, FieldString, FieldNumber, FieldBoolean, FieldDate } from './components'
+import { Button, DataGrid, MetaTable, Page, FieldString, FieldNumber, FieldBoolean, FieldDate } from './components'
 import { MetaRecalcEngine } from '@toy-box/power-fx'
 import { BrowserRouter } from 'react-router-dom'
 import { objectMeta, userSchema } from './data'
@@ -38,9 +38,13 @@ const SchemaField = createSchemaField({
     ArrayItems,
     Editable,
     NumberPicker,
-    MetaTable,
+    Button,
     DataGrid,
-    FieldString, FieldNumber, FieldBoolean, FieldDate
+    MetaTable,
+    FieldBoolean,
+    FieldDate,
+    FieldNumber,
+    FieldString,
   },
 })
 

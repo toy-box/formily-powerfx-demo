@@ -249,6 +249,20 @@ export const userSchema = {
         selectedKeys: {
           type: 'array',
         },
+        toolbar: {
+          type: 'void',
+          'x-component': 'Space',
+          properties: {
+            button1: {
+              type: 'void',
+              'x-component': 'Button',
+              'x-component-props': {
+                caption: 'The Button',
+                type: 'primary',
+              },
+            },
+          },
+        },
         dataSource: {
           type: 'array',
           'x-component': 'MetaTable',
@@ -256,16 +270,6 @@ export const userSchema = {
             defaultSelectionType: 'checkbox',
             objectMeta: objectMeta.properties.dataGrid,
           },
-          // properties: {
-          //   addition: {
-          //     type: 'void',
-          //     title: 'Addition',
-          //     'x-component': 'MetaTable.Addition',
-          //     'x-component-props': {},
-          //     'x-designable-id': 'jrbow23c0u6',
-          //     'x-index': 0,
-          //   },
-          // },
           items: {
             type: 'object',
             'x-designable-id': 'kreabo4057x',

@@ -9,10 +9,10 @@ import React, {
 } from 'react'
 import classNames from 'classnames'
 import { PaginationProps } from 'antd'
-import { observer, useField, useFieldSchema } from '@formily/react'
+import { observer, useField, useFieldSchema, Schema, RecursionField } from '@formily/react'
 import { CompareOP, fetchMeta, IFieldMeta } from '@toy-box/meta-schema'
 import update from 'immutability-helper'
-import { IButtonClusterProps } from '@toy-box/toybox-ui'
+import { IButtonClusterProps, ToolBar } from '@toy-box/toybox-ui'
 import { omit } from '@toy-box/toybox-shared'
 import { RowSelectionType } from 'antd/es/table/interface'
 import { useTable, useQuery } from '@toy-box/meta-components/lib/components/data-grid/hooks'
@@ -110,6 +110,29 @@ export declare type DataGridRefType = {
   dataSource?: RowData[]
 }
 
+
+const isToobarComponent = (schema: Schema) => {
+  return schema['x-component']?.indexOf('Space') > -1
+}
+
+const useToolbarSource = () => {
+  const schema = useFieldSchema()
+  return schema
+    .mapProperties((schema, name) => ({ schema, name }))
+    .find((item) => isToobarComponent(item.schema))
+}
+
+const isMetaTableComponent = (schema: Schema) => {
+  return schema['x-component']?.indexOf('MetaTable') > -1
+}
+
+const useMetaTableSchema = () => {
+  const schema = useFieldSchema()
+  return schema
+    .mapProperties((schema, name) => ({ schema, name }))
+    .find((item) => isMetaTableComponent(item.schema))
+}
+
 export const DataGrid: React.FC<IDataGridProps> = observer((
     {
       objectMeta,
@@ -129,22 +152,23 @@ export const DataGrid: React.FC<IDataGridProps> = observer((
     },
     ref: React.MutableRefObject<DataGridRefType>
   ) => {
-    const schema = useFieldSchema()
     const field = useField()
     const page = usePage()
     const [query, setQuery] = useQuery()
     const preParamsRef = useRef<Toybox.MetaSchema.Types.ICompareOperation[]>()
     const paramsRef = useRef<Toybox.MetaSchema.Types.ICompareOperation[]>()
     const [preParams, setPreParams] = useState<
-      Toybox.MetaSchema.Types.ICompareOperation[] | undefined
+    Toybox.MetaSchema.Types.ICompareOperation[] | undefined
     >()
     const [params, setParams] = useState<
-      Toybox.MetaSchema.Types.ICompareOperation[] | undefined
+    Toybox.MetaSchema.Types.ICompareOperation[] | undefined
     >()
     const [pageable, setPageable] = useState<{
       current?: number
       pageSize?: number
     }>({ current: pagination?.current, pageSize: pagination?.pageSize })
+    const toolbarSchema = useToolbarSource()
+    const metaTableSchema = useMetaTableSchema()
 
     const queryOption = () => {
       if (query.pageable) {
@@ -344,9 +368,18 @@ export const DataGrid: React.FC<IDataGridProps> = observer((
     return (
       <DataGridContext.Provider value={dataGridContext}>
         <div className={classNames('tbox-index-view', className)} style={style}>
-          <FilterPanel />
+          <ToolBar>
+            <FilterPanel />
+            <RecursionField
+              schema={toolbarSchema.schema}
+              name={toolbarSchema.name}
+            />
+          </ToolBar>
           <TableStatusBar />
-          {children}
+          <RecursionField
+            schema={metaTableSchema.schema}
+            name={metaTableSchema.name}
+          />
         </div>
       </DataGridContext.Provider>
     )
