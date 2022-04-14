@@ -259,6 +259,7 @@ export const userSchema = {
               'x-component-props': {
                 caption: 'The Button',
                 type: 'primary',
+                onClick: 'Notify("Good Job", "warning", 3)',
               },
             },
           },
