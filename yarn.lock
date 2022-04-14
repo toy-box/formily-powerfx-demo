@@ -1878,10 +1878,10 @@
   resolved "https://registry.yarnpkg.com/@toy-box/meta-schema/-/meta-schema-2.0.39.tgz#978bccd7da2b4ee5bc219e19ba7e7b99944fe73d"
   integrity sha512-/oIi1wZHco6F8DfWU+3qD0BzssaLVVXujMOjleB5B7fvsZRkyE/vCCNXodlXq3Em/VaC4V27x0D8FxvIvkcgFw==
 
-"@toy-box/power-fx@^0.1.66-alpha":
-  version "0.1.66-alpha"
-  resolved "https://registry.yarnpkg.com/@toy-box/power-fx/-/power-fx-0.1.66-alpha.tgz#ec1e89c0d95c44b2c2318c344af1f3954701c78b"
-  integrity sha512-XvLo6qU611ugtKzMdMfFkyGbzdEzooFgAmB1jvWeH3qaomHJLVFtFYTRHKU6XwGIcP3sHwGaArxaic09wOGqYg==
+"@toy-box/power-fx@^0.1.69-alpha":
+  version "0.1.69-alpha"
+  resolved "https://registry.yarnpkg.com/@toy-box/power-fx/-/power-fx-0.1.69-alpha.tgz#3b5cb710c86bf32fa0f45faa09896f2bfeb0c334"
+  integrity sha512-8cnjPV0grnpfiFjdQgSxsNSYJYiqqjlu6SUh0Vsl853WeBWa8nFPzo5nbreCUQA/ziC9+TdLO1/aHAkjiPLQXg==
   dependencies:
     "@formily/core" "^2.0.15"
     "@formily/json-schema" "^2.0.15"

@@ -3,12 +3,12 @@ import { CustomTexlFunction, DType, FormulaValue, FormulaValueStatic } from '@to
 
 export class Notify extends CustomTexlFunction {
   constructor() {
-    super('Notify', DType.ObjNull, [DType.String, DType.String, DType.Number]);
+    super('Notify', DType.ObjNull, [DType.String, DType.String, DType.Number], 1);
   }
   public invoke(args: FormulaValue[]): FormulaValue {
     const msg = args[0].toObject();
-    const type = args[1].toObject();
-    const time = args[2].toObject();
+    const type = args[1]?.toObject();
+    const time = args[2]?.toObject();
     switch (type) {
       case 'success':
         message.success(msg, time);
