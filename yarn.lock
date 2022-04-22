@@ -1873,10 +1873,10 @@
   "resolved" "https://registry.npmjs.org/@toy-box/meta-schema/-/meta-schema-2.0.39.tgz"
   "version" "2.0.39"
 
-"@toy-box/power-fx@^0.1.69-alpha":
-  "integrity" "sha512-8cnjPV0grnpfiFjdQgSxsNSYJYiqqjlu6SUh0Vsl853WeBWa8nFPzo5nbreCUQA/ziC9+TdLO1/aHAkjiPLQXg=="
-  "resolved" "https://registry.npmjs.org/@toy-box/power-fx/-/power-fx-0.1.69-alpha.tgz"
-  "version" "0.1.69-alpha"
+"@toy-box/power-fx@^0.1.73-alpha":
+  "integrity" "sha512-YL2j+p+odAavK/qITue/1E5nMcO2wa6XUgZsUJnJbKkOQQgh+KlxR+rdS+T6dkXvj26YZkg+VEHrnyafiyOfoA=="
+  "resolved" "https://registry.npmjs.org/@toy-box/power-fx/-/power-fx-0.1.73-alpha.tgz"
+  "version" "0.1.73-alpha"
   dependencies:
     "@formily/core" "^2.0.15"
     "@formily/json-schema" "^2.0.15"
