@@ -6,6 +6,7 @@ export class Notify extends CustomTexlFunction {
     super('Notify', DType.ObjNull, [DType.String, DType.String, DType.Number], 1);
   }
   public invoke(args: FormulaValue[]): FormulaValue {
+    console.log('invoke notify', args);
     const msg = args[0].toObject();
     const type = args[1]?.toObject();
     const time = args[2]?.toObject();
