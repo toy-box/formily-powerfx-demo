@@ -46,9 +46,11 @@ function reactionsPatch(reactions: any | any[], engine: MetaRecalcEngine) {
 
 function reactionPatch(reaction: any, engine: MetaRecalcEngine) {
   if (reaction.type === 'expression') {
-    return (field: Field) => {
+    return async (field: Field) => {
       if (field.form.initialized) {
-        const result = engine.eval(reaction.expression, field.address.toString()).toObject();
+        const result = (
+          await engine.eval(reaction.expression, field.address.toString())
+        ).toObject();
         switch (reaction.state) {
           case 'value':
             field.setValue(result);
