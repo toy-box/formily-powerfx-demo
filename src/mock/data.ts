@@ -18,58 +18,6 @@ export const objectMeta: IObjectMeta = {
   type: 'object',
   primaryKey: 'username',
   properties: {
-    username: {
-      key: 'username',
-      type: 'string',
-      name: '用户名',
-    },
-    firstName: {
-      key: 'firstName',
-      type: 'string',
-      name: '姓',
-    },
-    lastName: {
-      key: 'lastName',
-      type: 'string',
-      name: '名',
-    },
-    email: {
-      key: 'email',
-      type: 'string',
-      name: '邮箱',
-    },
-    gender: {
-      key: 'gender',
-      type: 'boolean',
-      name: '性别',
-    },
-    birthday: {
-      key: 'birthday',
-      type: 'date',
-      name: '生日',
-    },
-    fullMonth: {
-      key: 'fullMonth',
-      type: 'date',
-      name: '满月',
-    },
-    parent: {
-      key: 'parent',
-      name: 'parent',
-      type: 'object',
-      properties: {
-        age: {
-          key: 'age',
-          type: 'number',
-          name: '年龄',
-        },
-        amount: {
-          key: 'amount',
-          type: 'number',
-          name: '年金',
-        },
-      },
-    },
     dataGrid: {
       key: 'dataGrid',
       name: 'dataGrid',
@@ -105,135 +53,49 @@ export const objectMeta: IObjectMeta = {
         },
       },
     },
+    dataView: {
+      type: 'object',
+      name: 'dataView',
+      key: 'dataView',
+      properties: {
+        username: {
+          type: 'string',
+          name: 'User name',
+          key: 'username',
+        },
+        firstName: {
+          type: 'string',
+          name: 'First name',
+          key: 'firstName',
+        },
+        lastName: {
+          type: 'string',
+          name: 'Last name',
+          key: 'lastName',
+        },
+        gender: {
+          key: 'gender',
+          type: 'singleOption',
+          name: 'Gender',
+          options: [
+            {
+              label: 'Male',
+              value: 'male',
+            },
+            {
+              label: 'Female',
+              value: 'female',
+            },
+          ],
+        },
+      },
+    },
   },
 };
 
 export const userSchema = {
   type: 'object',
   properties: {
-    username: {
-      type: 'string',
-      title: '用户名',
-      required: true,
-      'x-decorator': 'FormItem',
-      'x-component': 'Input',
-      'x-reactions': [
-        {
-          type: 'expression',
-          state: 'value',
-          expression: 'firstName & " " & lastName',
-        },
-      ],
-    },
-    name: {
-      type: 'void',
-      title: '姓名',
-      'x-decorator': 'FormItem',
-      'x-decorator-props': {
-        asterisk: true,
-        feedbackLayout: 'none',
-      },
-      'x-component': 'FormGrid',
-      properties: {
-        firstName: {
-          type: 'string',
-          required: true,
-          'x-decorator': 'FormItem',
-          'x-component': 'Input',
-          'x-component-props': {
-            placeholder: '姓',
-          },
-        },
-        lastName: {
-          type: 'string',
-          required: true,
-          'x-decorator': 'FormItem',
-          'x-component': 'Input',
-          'x-component-props': {
-            placeholder: '名',
-          },
-        },
-      },
-    },
-    email: {
-      type: 'string',
-      title: '邮箱',
-      required: true,
-      'x-decorator': 'FormItem',
-      'x-component': 'Input',
-      'x-validator': 'email',
-      'x-reactions': [
-        {
-          type: 'expression',
-          state: 'visibility',
-          expression: 'parent.amount <= 0',
-        },
-      ],
-    },
-    gender: {
-      type: 'string',
-      title: '性别',
-      enum: [
-        {
-          label: '男',
-          value: 1,
-        },
-        {
-          label: '女',
-          value: 2,
-        },
-        {
-          label: '第三性别',
-          value: 3,
-        },
-      ],
-      'x-decorator': 'FormItem',
-      'x-component': 'Select',
-    },
-    birthday: {
-      type: 'string',
-      required: true,
-      title: '生日',
-      'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
-    },
-    fullMonth: {
-      type: 'string',
-      title: '满月',
-      'x-decorator': 'FormItem',
-      'x-component': 'DatePicker',
-      'x-reactions': [
-        {
-          type: 'expression',
-          state: 'value',
-          expression: 'DateAdd(birthday, 30)',
-        },
-      ],
-    },
-    parent: {
-      type: 'object',
-      properties: {
-        age: {
-          type: 'number',
-          title: '年龄',
-          'x-decorator': 'FormItem',
-          'x-component': 'NumberPicker',
-        },
-        amount: {
-          type: 'number',
-          title: '年金',
-          'x-decorator': 'FormItem',
-          'x-component': 'NumberPicker',
-          'x-reactions': [
-            {
-              type: 'expression',
-              state: 'value',
-              expression: '1000 * ThisItem.age',
-            },
-          ],
-        },
-      },
-    },
     dataGrid: {
       type: 'object',
       'x-decorator': 'FormItem',
@@ -318,6 +180,65 @@ export const userSchema = {
         },
       },
       'x-index': 0,
+    },
+    dataView: {
+      type: 'object',
+      'x-component': 'DataView',
+      'x-component-props': {
+        dataRepository: 'User',
+      },
+      properties: {
+        username: {
+          type: 'string',
+          title: '用户名',
+          required: true,
+          'x-decorator': 'FormItem',
+          'x-component': 'FieldString',
+          'x-reactions': [
+            {
+              type: 'expression',
+              state: 'value',
+              expression: 'ThisItem.firstName & " " & ThisItem.lastName',
+            },
+          ],
+        },
+        name: {
+          type: 'void',
+          title: '姓名',
+          'x-decorator': 'FormItem',
+          'x-decorator-props': {
+            asterisk: true,
+            feedbackLayout: 'none',
+          },
+          'x-component': 'FormGrid',
+          properties: {
+            firstName: {
+              type: 'string',
+              required: true,
+              'x-decorator': 'FormItem',
+              'x-component': 'FieldString',
+              'x-component-props': {
+                placeholder: '姓',
+              },
+            },
+            lastName: {
+              type: 'string',
+              required: true,
+              'x-decorator': 'FormItem',
+              'x-component': 'FieldString',
+              'x-component-props': {
+                placeholder: '名',
+              },
+            },
+          },
+        },
+        gender: {
+          type: 'string',
+          title: ' Gender',
+          'x-decorator': 'FormItem',
+          'x-component': 'FieldSelect',
+        },
+      },
     },
   },
 };
