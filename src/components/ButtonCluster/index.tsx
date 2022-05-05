@@ -4,7 +4,7 @@ import {
   IButtonClusterProps,
   IButtonItem,
 } from '@toy-box/toybox-ui'
-import { usePage } from '../Page/hooks/usePage'
+import { usePage } from '../../hooks/usePage'
 
 export type ButtonItemType = Omit<IButtonItem, 'callback'> & {
   onClick?: string

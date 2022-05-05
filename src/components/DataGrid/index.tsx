@@ -22,7 +22,7 @@ import {
   TableStatusBar,
   FilterPanel,
 } from './components'
-import { usePage } from '../Page/hooks/usePage'
+import { usePage } from '../../hooks/usePage'
 
 // export * from './hooks'
 

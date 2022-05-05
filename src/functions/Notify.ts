@@ -5,8 +5,7 @@ export class Notify extends CustomTexlFunction {
   constructor() {
     super('Notify', DType.ObjNull, [DType.String, DType.String, DType.Number], 1);
   }
-  public invoke(args: FormulaValue[]): FormulaValue {
-    console.log('invoke notify', args);
+  public invoke(args: FormulaValue[]): Promise<FormulaValue> {
     const msg = args[0].toObject();
     const type = args[1]?.toObject();
     const time = args[2]?.toObject();
@@ -25,6 +24,8 @@ export class Notify extends CustomTexlFunction {
         message.info(msg, time);
         break;
     }
-    return FormulaValueStatic.New();
+    return new Promise((resolve) => {
+      resolve(FormulaValueStatic.New());
+    });
   }
 }

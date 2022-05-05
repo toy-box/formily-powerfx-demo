@@ -1,4 +1,4 @@
 import { useContext } from 'react';
-import { PageContext } from '../context';
+import { PageContext } from '../components/Page/context';
 
 export const usePage = () => useContext(PageContext);

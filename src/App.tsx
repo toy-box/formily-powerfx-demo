@@ -15,12 +15,13 @@ import {
   ArrayTable,
 } from '@formily/antd'
 import { Card } from 'antd'
-import { Button, DataGrid, MetaTable, Page, FieldString, FieldNumber, FieldBoolean, FieldDate, ButtonCluster } from './components'
+import { Button, DataGrid, DataView, MetaTable, Page, FieldString, FieldNumber, FieldBoolean, FieldDate, ButtonCluster, FieldSelect } from './components'
 import { MetaRecalcEngine, PowerFxConfig } from '@toy-box/power-fx'
 import { BrowserRouter } from 'react-router-dom'
-import { objectMeta, userSchema } from './data'
+import { objectMeta, userSchema } from './mock/data'
 import { patchProvide } from './patcher'
 import { Notify } from './functions/Notify'
+import { metaService } from './mock/services'
 
 const form = createForm({
   validateFirst: true,
@@ -41,12 +42,14 @@ const SchemaField = createSchemaField({
     NumberPicker,
     Button,
     DataGrid,
+    DataView,
     MetaTable,
     FieldBoolean,
     FieldDate,
     FieldNumber,
     FieldString,
     ButtonCluster,
+    FieldSelect,
   },
 })
 
@@ -76,6 +79,7 @@ const App =  () => {
             wrapperCol={16}
             onAutoSubmit={console.log}
             pageMeta={objectMeta}
+            metaService={metaService}
             engine={engine}
           >
             <SchemaField schema={userSchema} />

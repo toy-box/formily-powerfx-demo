@@ -3,7 +3,7 @@ import { isFn, isStr, FormPath, each, isValid } from '@formily/shared';
 import { observer } from '@formily/reactive-react';
 import { JSXComponent, IStateMapper, useField } from '@formily/react';
 import { fetchMeta } from '@toy-box/meta-schema';
-import { usePage } from '../../Page/hooks/usePage';
+import { usePage } from '../../../hooks/usePage';
 
 export function mapFieldProps<T extends JSXComponent>(
   ...args: IStateMapper<React.ComponentProps<T>>[]
