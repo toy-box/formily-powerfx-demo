@@ -262,6 +262,34 @@ export const userSchema = {
                 onClick: 'Notify("Nice");Notify("Good Job")',
               },
             },
+            button2: {
+              type: 'void',
+              'x-component': 'ButtonCluster',
+              'x-component-props': {
+                caption: 'The Button',
+                type: 'primary',
+                onClick: 'Notify("Nice");Notify("Good Job")',
+                items: [
+                  {
+                    text: 'Button 1',
+                    type: 'primary',
+                    onClick: 'Notify("Nice1");Notify("Good Job1")',
+                  },
+                  {
+                    text: 'Button 2',
+                    onClick: 'Notify("Nice2");Notify("Good Job2")',
+                  },
+                  {
+                    text: 'Button 3',
+                    onClick: 'Notify("Nice3");Notify("Good Job3")',
+                  },
+                  {
+                    text: 'Button 4',
+                    onClick: 'Notify("Nice4");Notify("Good Job4")',
+                  },
+                ]
+              },
+            },
           },
         },
         dataSource: {
