@@ -16,15 +16,13 @@ import {
 } from '@formily/antd'
 import { Card } from 'antd'
 import { Button, DataGrid, DataView, MetaTable, Page, FieldString, FieldNumber, FieldBoolean, FieldDate, FieldSelect } from './components'
-import { MetaRecalcEngine, PowerFxConfig } from '@toy-box/power-fx'
-import { MetaEngineDocument, MetaEntityScope } from '@toy-box/power-fx/lib/meta'
+import { MetaRecalcEngine, PowerFxConfig, MetaEngineDocument, MetaEntityScope, MetaControlFactory } from '@toy-box/power-fx'
 import { BrowserRouter } from 'react-router-dom'
 import { objectMeta, userSchema } from './mock/data'
 import { patchProvide } from './patcher'
 import { Notify } from './functions/Notify'
 import { metaService, flowService } from './mock/services'
 import { Submit } from './functions/Submit'
-import { makeFormControl } from './powerfx/control'
 
 const form = createForm({
   validateFirst: true,
@@ -56,13 +54,13 @@ const SchemaField = createSchemaField({
 })
 
 
-const dataView = makeFormControl('dataView', 'dataView')
+const dataView = MetaControlFactory.MakeFormControl('dataView', 'dataView')
 const scope = new MetaEntityScope({ entities: [dataView], form, metaSchema: objectMeta })
 const document = new MetaEngineDocument(scope)
 
 const config = new PowerFxConfig()
 config.addFunction(new Notify())
-config.addFunction(new Submit())
+config.addFunction(new Submit(form))
 
 const engine = new MetaRecalcEngine(form, objectMeta, config, document)
 
