@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { createForm } from '@formily/core'
 import { createSchemaField, Schema } from '@formily/react'
 import {
@@ -17,11 +17,14 @@ import {
 import { Card } from 'antd'
 import { Button, DataGrid, DataView, MetaTable, Page, FieldString, FieldNumber, FieldBoolean, FieldDate, FieldSelect } from './components'
 import { MetaRecalcEngine, PowerFxConfig } from '@toy-box/power-fx'
+import { MetaEngineDocument, MetaEntityScope } from '@toy-box/power-fx/lib/meta'
 import { BrowserRouter } from 'react-router-dom'
 import { objectMeta, userSchema } from './mock/data'
 import { patchProvide } from './patcher'
 import { Notify } from './functions/Notify'
-import { metaService } from './mock/services'
+import { metaService, flowService } from './mock/services'
+import { Submit } from './functions/Submit'
+import { makeFormControl } from './powerfx/control'
 
 const form = createForm({
   validateFirst: true,
@@ -52,9 +55,16 @@ const SchemaField = createSchemaField({
   },
 })
 
+
+const dataView = makeFormControl('dataView', 'dataView')
+const scope = new MetaEntityScope({ entities: [dataView], form, metaSchema: objectMeta })
+const document = new MetaEngineDocument(scope)
+
 const config = new PowerFxConfig()
 config.addFunction(new Notify())
-const engine = new MetaRecalcEngine(form, objectMeta, config)
+config.addFunction(new Submit())
+
+const engine = new MetaRecalcEngine(form, objectMeta, config, document)
 
 Schema.registerPatches(patchProvide(engine))
 
@@ -79,6 +89,7 @@ const App =  () => {
             onAutoSubmit={console.log}
             pageMeta={objectMeta}
             metaService={metaService}
+            flowService={flowService}
             engine={engine}
           >
             <SchemaField schema={userSchema} />

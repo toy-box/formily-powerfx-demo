@@ -1,10 +1,12 @@
+import { FlowService } from '../services';
 import { MetaService } from '../services/MetaService';
 
 export const metaService: MetaService = {
   findById(repo: string, id: string) {
     return new Promise((resolve, reject) => {
       resolve({
-        name: 'Jack',
+        firstName: '刘',
+        lastName: '伯承',
         gender: 'male',
       });
     });
@@ -20,5 +22,13 @@ export const metaService: MetaService = {
   },
   replaceOne(repoId: string, id: string, data: Record<string, any>): Promise<Record<string, any>> {
     throw new Error('Function not implemented.');
+  },
+};
+
+export const flowService: FlowService = {
+  postFlow(flow: string, data: any) {
+    return new Promise((resolve, reject) => {
+      resolve(null);
+    });
   },
 };

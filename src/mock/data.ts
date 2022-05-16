@@ -121,7 +121,7 @@ export const userSchema = {
               'x-component-props': {
                 caption: 'The Button',
                 type: 'primary',
-                onClick: 'Notify("Nice");Notify("Good Job")',
+                onClick: 'Notify("Nice")',
               },
             },
           },
@@ -185,7 +185,10 @@ export const userSchema = {
       type: 'object',
       'x-component': 'DataView',
       'x-component-props': {
+        uid: 'dataView',
         dataRepository: 'User',
+        flow: 'User',
+        uni: 'User',
       },
       properties: {
         username: {
@@ -238,6 +241,15 @@ export const userSchema = {
           'x-decorator': 'FormItem',
           'x-component': 'FieldSelect',
         },
+      },
+    },
+    submit: {
+      type: 'void',
+      'x-component': 'Button',
+      'x-component-props': {
+        caption: 'Submit User',
+        type: 'primary',
+        onClick: 'Submit($Form.dataView)',
       },
     },
   },

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Form, FormProps } from '@formily/antd'
-import { PageContext } from './context'
 import { IFieldMeta } from '@toy-box/meta-schema'
 import { MetaRecalcEngine } from '@toy-box/power-fx'
-import { MetaService } from '../../services/MetaService'
+import { FlowService, MetaService } from '../../services'
+import { PageContext } from './context'
 
 export type PageProps = {
   title: string
@@ -11,6 +11,7 @@ export type PageProps = {
   pageMeta: IFieldMeta
   engine: MetaRecalcEngine
   metaService: MetaService
+  flowService: FlowService
 } & FormProps
 
 export const Page: React.FC<PageProps> = ({
@@ -20,10 +21,11 @@ export const Page: React.FC<PageProps> = ({
   engine,
   children,
   metaService,
+  flowService,
   ...formProps
 }) => {
   return (
-    <PageContext.Provider value={{ title, name, pageMeta, engine, metaService }}>
+    <PageContext.Provider value={{ title, name, pageMeta, engine, metaService, flowService }}>
       <Form {...formProps}>
         {children}
       </Form>
