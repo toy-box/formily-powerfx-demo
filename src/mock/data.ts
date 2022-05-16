@@ -53,6 +53,43 @@ export const objectMeta: IObjectMeta = {
         },
       },
     },
+    dataView1: {
+      type: 'object',
+      name: 'dataView',
+      key: 'dataView',
+      properties: {
+        username1: {
+          type: 'string',
+          name: 'User name',
+          key: 'username1',
+        },
+        firstName1: {
+          type: 'string',
+          name: 'First name',
+          key: 'firstName1',
+        },
+        lastName1: {
+          type: 'string',
+          name: 'Last name',
+          key: 'lastName1',
+        },
+        gender1: {
+          key: 'gender1',
+          type: 'singleOption',
+          name: 'Gender',
+          options: [
+            {
+              label: 'Male',
+              value: 'male',
+            },
+            {
+              label: 'Female',
+              value: 'female',
+            },
+          ],
+        },
+      },
+    },
     dataView: {
       type: 'object',
       name: 'dataView',
@@ -180,6 +217,82 @@ export const userSchema = {
         },
       },
       'x-index': 0,
+    },
+    container: {
+      type: 'void',
+      'x-component': 'Container',
+      'x-component-props': {
+        // components: [FieldString],
+        style: {
+          background: '#ccc',
+          padding: '20px', 
+          marginBottom: '20px'
+        },
+        components: {
+          type: 'object',
+          properties: {
+            dataView1: {
+              type: 'object',
+              'x-component': 'DataView',
+              'x-component-props': {
+                dataRepository: 'User',
+              },
+              properties: {
+                username1: {
+                  type: 'string',
+                  title: '用户名',
+                  required: true,
+                  'x-decorator': 'FormItem',
+                  'x-component': 'FieldString',
+                  'x-reactions': [
+                    {
+                      type: 'expression',
+                      state: 'value',
+                      expression: 'ThisItem.firstName1 & " " & ThisItem.lastName1',
+                    },
+                  ],
+                },
+                name1: {
+                  type: 'void',
+                  title: '姓名',
+                  'x-decorator': 'FormItem',
+                  'x-decorator-props': {
+                    asterisk: true,
+                    feedbackLayout: 'none',
+                  },
+                  'x-component': 'FormGrid',
+                  properties: {
+                    firstName1: {
+                      type: 'string',
+                      required: true,
+                      'x-decorator': 'FormItem',
+                      'x-component': 'FieldString',
+                      'x-component-props': {
+                        placeholder: '姓',
+                      },
+                    },
+                    lastName1: {
+                      type: 'string',
+                      required: true,
+                      'x-decorator': 'FormItem',
+                      'x-component': 'FieldString',
+                      'x-component-props': {
+                        placeholder: '名',
+                      },
+                    },
+                  },
+                },
+                // gender1: {
+                //   type: 'string',
+                //   title: ' Gender',
+                //   'x-decorator': 'FormItem',
+                //   'x-component': 'FieldSelect',
+                // },
+              },
+            },
+          },
+        },
+      },
     },
     dataView: {
       type: 'object',
