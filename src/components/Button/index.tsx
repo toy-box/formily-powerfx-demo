@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { Button as ToyboxButton } from '@toy-box/toybox-ui'
-import { usePage } from '../Page/hooks/usePage'
+import { usePage } from '../../hooks/usePage'
 
 
 export type ButtonProps = {
