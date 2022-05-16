@@ -15,7 +15,7 @@ import {
   ArrayTable,
 } from '@formily/antd'
 import { Card } from 'antd'
-import { Button, DataGrid, DataView, MetaTable, Page, FieldString, FieldNumber, FieldBoolean, FieldDate, ButtonCluster, FieldSelect } from './components'
+import { Button, DataGrid, DataView, MetaTable, Page, FieldString, FieldNumber, FieldBoolean, FieldDate, ButtonCluster, FieldSelect, Container } from './components'
 import { MetaRecalcEngine, PowerFxConfig } from '@toy-box/power-fx'
 import { BrowserRouter } from 'react-router-dom'
 import { objectMeta, userSchema } from './mock/data'
@@ -50,6 +50,7 @@ const SchemaField = createSchemaField({
     FieldString,
     ButtonCluster,
     FieldSelect,
+    Container,
   },
 })
 
