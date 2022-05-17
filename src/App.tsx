@@ -59,10 +59,10 @@ const scope = new MetaEntityScope({ entities: [dataView], form, metaSchema: obje
 const document = new MetaEngineDocument(scope)
 
 const config = new PowerFxConfig()
-config.addFunction(new Notify())
-config.addFunction(new Submit(form))
-
 const engine = new MetaRecalcEngine(form, objectMeta, config, document)
+
+config.addFunction(new Notify())
+config.addFunction(new Submit(form, engine))
 
 Schema.registerPatches(patchProvide(engine))
 

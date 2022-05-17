@@ -188,7 +188,8 @@ export const userSchema = {
         uid: 'dataView',
         dataRepository: 'User',
         flow: 'User',
-        uni: 'User',
+        onSuccess: 'Notify("Add user success")',
+        onFail: 'Notify("Add user fail")',
       },
       properties: {
         username: {

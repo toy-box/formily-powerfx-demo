@@ -4,6 +4,7 @@ import {
   DType,
   FormulaValue,
   FormulaValueStatic,
+  MetaRecalcEngine,
 } from '@toy-box/power-fx';
 import { Form, ObjectField } from '@formily/core';
 
@@ -19,17 +20,24 @@ const defaultSubmitFn: SubmitFn = (data: any) => {
 export class Submit extends CustomTexlFunction {
   private submitFn: SubmitFn;
   private form: Form;
-  constructor(form: Form, fn: SubmitFn = defaultSubmitFn) {
+  private engine: MetaRecalcEngine;
+
+  constructor(form: Form, engine: MetaRecalcEngine, fn: SubmitFn = defaultSubmitFn) {
     super('Submit', DType.ObjNull, [DType.Error], 0);
     this.form = form;
+    this.engine = engine;
     this.submitFn = fn;
   }
+
   public invoke(args: FormulaValue[]): Promise<FormulaValue> {
     const control = args[0].toObject() as Control;
-    const field = Object.values(this.form.fields).find(
+    const formField = Object.values(this.form.fields).find(
       (field) => field.componentProps['uid'] === control.entityName.value
     ) as ObjectField;
-    console.log(control.entityName, field);
-    return this.submitFn(field.value);
+    const onSuccessExpression = formField.componentProps['onSuccess'];
+    const onFailExpression = formField.componentProps['onFail'];
+    return this.submitFn(formField.value)
+      .then((value) => this.engine.eval(onSuccessExpression))
+      .catch((err) => this.engine.eval(onFailExpression));
   }
 }
