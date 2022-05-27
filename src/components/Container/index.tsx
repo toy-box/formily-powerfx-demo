@@ -24,7 +24,7 @@ export type ContainerProps = {
   components: Schema
 }
 
-export const Container: React.FC<ContainerProps> = ({ className, style, components, children }) => {
+export const Container: React.FC<React.PropsWithChildren<ContainerProps>> = ({ className, style, components, children }) => {
   const page = usePage()
   const SchemaField = createSchemaField({
     components: {

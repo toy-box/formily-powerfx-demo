@@ -335,7 +335,7 @@ export const MetaTable: ComposedArrayTable = observer(
       [dataGrid, objectMeta.primaryKey, props.defaultSelectionType, props.keepSelected, tableProps.dataSource]
     )
 
-    const addTdStyles = (node: HTMLElement) => {
+    const addTdStyles = (node: Element) => {
       const helper = document.body.querySelector(`.${prefixCls}-sort-helper`)
       if (helper) {
         const tds = node.querySelectorAll('td')

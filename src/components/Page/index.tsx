@@ -14,7 +14,7 @@ export type PageProps = {
   flowService: FlowService
 } & FormProps
 
-export const Page: React.FC<PageProps> = ({
+export const Page: React.FC<React.PropsWithChildren<PageProps>> = ({
   title,
   name,
   pageMeta,
