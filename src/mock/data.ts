@@ -225,8 +225,8 @@ export const userSchema = {
         // components: [FieldString],
         style: {
           background: '#ccc',
-          padding: '20px', 
-          marginBottom: '20px'
+          padding: '20px',
+          marginBottom: '20px',
         },
         components: {
           type: 'object',
@@ -235,6 +235,7 @@ export const userSchema = {
               type: 'object',
               'x-component': 'DataView',
               'x-component-props': {
+                uid: 'dataView1',
                 dataRepository: 'User',
               },
               properties: {
@@ -282,12 +283,6 @@ export const userSchema = {
                     },
                   },
                 },
-                // gender1: {
-                //   type: 'string',
-                //   title: ' Gender',
-                //   'x-decorator': 'FormItem',
-                //   'x-component': 'FieldSelect',
-                // },
               },
             },
           },

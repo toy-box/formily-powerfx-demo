@@ -17,7 +17,7 @@
     "@toy-box/meta-components": "^3.0.3",
     "@toy-box/meta-schema": "^3.0.3",
     "@toy-box/toybox-shared": "^3.0.3",
-    "@toy-box/power-fx": "^0.1.86-alpha",
+    "@toy-box/power-fx": "0.2.0-alpha.1",
     "antd": "^4.20.0",
     "craco-less": "^2.0.0",
     "react": "^18.0.0",

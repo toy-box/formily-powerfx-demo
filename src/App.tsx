@@ -15,7 +15,7 @@ import {
   ArrayTable,
 } from '@formily/antd'
 import { Card } from 'antd'
-import { MetaRecalcEngine, PowerFxConfig, MetaEngineDocument, MetaEntityScope, MetaControlFactory } from '@toy-box/power-fx'
+import { MetaRecalcEngine, PowerFxConfig, MetaEngineDocument, MetaEntityScope } from '@toy-box/power-fx'
 import { Button, DataGrid, DataView, MetaTable, Page, FieldString, FieldNumber, FieldBoolean, FieldDate, ButtonCluster, FieldSelect, Container } from './components'
 import { BrowserRouter } from 'react-router-dom'
 import { objectMeta, userSchema } from './mock/data'
@@ -56,8 +56,8 @@ const SchemaField = createSchemaField({
 })
 
 
-const dataView = MetaControlFactory.MakeFormControl('dataView', 'dataView')
-const scope = new MetaEntityScope({ entities: [dataView], form, metaSchema: objectMeta })
+// const dataView = MetaControlFactory.MakeFormControl('dataView', 'dataView')
+const scope = new MetaEntityScope({ entities: [], form, metaSchema: objectMeta })
 const document = new MetaEngineDocument(scope)
 
 const config = new PowerFxConfig()
@@ -71,14 +71,7 @@ Schema.registerPatches(patchProvide(engine))
 const App =  () => {
   return (
     <BrowserRouter>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          background: '#eee',
-          padding: '40px 0',
-        }}
-      >
+      <div>
         <Card title="编辑用户" style={{ width: 620 }}>
           <Page
             title="编辑用户"
